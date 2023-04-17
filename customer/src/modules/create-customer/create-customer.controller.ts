@@ -6,16 +6,16 @@ export default class CreateCustomerController {
     const { name, email, password, phone } = req.body;
 
     try {
-      const costumer = await CreateCustumerUseCase.execute({
+      await CreateCustumerUseCase.execute({
         name,
         email,
         password,
         phone,
       });
 
-      return res.status(201).json(costumer);
+      return res.status(201).json();
     } catch (error) {
-      return res.status(400).json({ error: "Teste" });
+      return res.status(400).json({ error: error.message });
     }
   }
 }
